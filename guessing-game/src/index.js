@@ -10,7 +10,17 @@ class App extends Component {
 	render(props, state) {
 		const strapline = `Looking for ${state.targetNumber} in ${state.maxGuessableNumber}`;
 
-		const buttons = state.guessableNumbers.map((n) => h('button', null, n.toString()));
+		const buttons = state.guessableNumbers.map((n) => {
+			const attributes = {
+				onClick: (e) => this.setState(Game.handleGuess(state, n))
+			};
+
+			if(state.guessedNumbers.includes(n)) {
+				attributes.disabled = 'true'
+			}
+
+			return h('button', attributes, n.toString());
+		});
 
 		return (
 			h('div', {id: 'app', class: "game-panel"},
@@ -25,6 +35,7 @@ class App extends Component {
 		super(props);
 
 		this.state = Game.setup();
+
 	}
 }
 
