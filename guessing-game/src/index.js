@@ -11,7 +11,7 @@ class App extends Component {
 		const component = this;
 
 		function renderStrapline() {
-		 	return `Looking for ${state.targetNumber} in ${state.maxGuessableNumber}`;
+		 	return `Looking for ${state.targetNumber} in ${state.maxGuessableNumber} with ${state.remainingGuesses} guess left`;
 		}
 
 		function renderButtons() {
