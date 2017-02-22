@@ -8,25 +8,31 @@ class App extends Component {
 	}
 
 	render(props, state) {
-		const strapline = `Looking for ${state.targetNumber} in ${state.maxGuessableNumber}`;
+		const component = this;
 
-		const buttons = state.guessableNumbers.map((n) => {
-			const attributes = {
-				onClick: (e) => this.setState(Game.handleGuess(state, n))
-			};
+		function renderStrapline() {
+		 	return `Looking for ${state.targetNumber} in ${state.maxGuessableNumber}`;
+		}
 
-			if(state.guessedNumbers.includes(n)) {
-				attributes.disabled = 'true'
-			}
+		function renderButtons() {
+			return state.guessableNumbers.map((n) => {
+				const attributes = {
+					onClick: (e) => component.setState(Game.handleGuess(state, n))
+				};
 
-			return h('button', attributes, n.toString());
-		});
+				if(state.guessedNumbers.includes(n)) {
+					attributes.disabled = 'true'
+				}
+
+				return h('button', attributes, n.toString());
+			});
+		}
 
 		return (
 			h('div', {id: 'app', class: "game-panel"},
 				h('h1', null, 'Guessing game'),
-				h('p', null, strapline),
-				buttons
+				h('p', null, renderStrapline()),
+				renderButtons()
 			)
 		);
 	}
