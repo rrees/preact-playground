@@ -1,20 +1,30 @@
 
-const { Component, h, render } = window.preact;
+const { Component, h, render } = require('preact');
+
+const Game = require('./game');
 
 class App extends Component {
 	componentDidMount() {
-		this.setState({message: "Hello world!"})
 	}
 
 	render(props, state) {
-		const strapline = `${state.message}`;
-		
+		const strapline = `Looking for ${state.targetNumber} in ${state.maxGuessableNumber}`;
+
+		const buttons = state.guessableNumbers.map((n) => h('button', null, n.toString()));
+
 		return (
-			h('div', {id: 'app'},
+			h('div', {id: 'app', class: "game-panel"},
 				h('h1', null, 'Guessing game'),
-				h('p', null, strapline)
+				h('p', null, strapline),
+				buttons
 			)
 		);
+	}
+
+	constructor(props) {
+		super(props);
+
+		this.state = Game.setup();
 	}
 }
 
