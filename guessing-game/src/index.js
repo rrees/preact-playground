@@ -11,6 +11,14 @@ class App extends Component {
 		const component = this;
 
 		function renderStrapline() {
+			if(state.won) {
+				return "Congratulations, you won!";
+			}
+
+			if(!state.playing && !state.won) {
+				return "Sorry, you've lost";
+			}
+			
 		 	return `Looking for ${state.targetNumber} in ${state.maxGuessableNumber} with ${state.remainingGuesses} guess left`;
 		}
 
