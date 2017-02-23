@@ -18,11 +18,15 @@ class App extends Component {
 			if(!state.playing && !state.won) {
 				return "Sorry, you've lost";
 			}
-			
-		 	return `Looking for ${state.targetNumber} in ${state.maxGuessableNumber} with ${state.remainingGuesses} guess left`;
+
+		 	return `Looking for ${state.targetNumber} in ${state.maxGuessableNumber} with ${state.remainingGuesses} guesses left`;
 		}
 
 		function renderButtons() {
+			if(!state.playing) {
+				return h('button', { onClick: (e) => component.setState(Game.setup()) }, 'Play again');
+			}
+
 			return state.guessableNumbers.map((n) => {
 				const attributes = {
 					onClick: (e) => component.setState(Game.handleGuess(state, n))
