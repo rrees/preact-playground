@@ -6,12 +6,21 @@ class App extends Component {
 	render(props, state) {
 		const component = this;
 		console.log(state);
+
+		function renderActions(state) {
+			if(state.currentEntry.actions.length === 0) {
+				return h('p', {}, "Your story has ended");
+			}
+
+			return state.currentEntry.actions.map((action) => h('p', {}, h('a', {onclick: (e) => component.setState({currentEntry: component.entries[action.nextEntry]})}, action.description)));
+		}
+
 		return (
 			h('div', {id: 'app'},
 				h('h1', null, state.adventureName),
 				h('h2', null, state.currentEntry.name),
 				h('p', null, state.currentEntry.description),
-				state.currentEntry.actions.map((action) => h('p', {}, h('a', {onclick: (e) => component.setState({currentEntry: component.entries[action.nextEntry]})}, action.description)))
+				renderActions(state)
 			)
 		);
 	}
@@ -37,8 +46,17 @@ class App extends Component {
 					{
 						description: "Enter the overgrown grounds surrounding the house",
 						nextEntry: 1
+					},
+					{
+						description: "Enter the house",
+						nextEntry: 3
 					}
 				]
+			},
+			3: {
+				name: "The hall of the house",
+				description: "The door closes behind you and you cannot open it again.",
+				actions: []
 			}
 		};
 
