@@ -15,12 +15,25 @@ class App extends Component {
 			return state.currentEntry.actions.map((action) => h('p', {}, h('a', {onclick: (e) => component.setState({currentEntry: component.entries[action.nextEntry]})}, action.description)));
 		}
 
+		function renderVariables(state) {
+
+			const variables = Object.entries(state.parameters).map((item) => {
+				const [k, v] = item;
+				return h("li", null, k + ":" + v);
+			});
+			console.log(variables);
+
+			return [h("h2", null, "Variables"),
+				h("ul", null, variables)];
+		}
+
 		return (
 			h('div', {id: 'app'},
 				h('h1', null, state.adventureName),
 				h('h2', null, state.currentEntry.name),
 				h('p', null, state.currentEntry.description),
-				renderActions(state)
+				renderActions(state),
+				renderVariables(state)
 			)
 		);
 	}
@@ -63,7 +76,11 @@ class App extends Component {
 
 		this.state = {
 			adventureName: "The Haunted House",
-			currentEntry: this.entries[1]
+			currentEntry: this.entries[1],
+			parameters: {
+				hello: "World",
+				food: "potato"
+			}
 		};
 	}
 }
