@@ -1,3 +1,11 @@
+
+
+const sounds = [
+	'Running water',
+	'Birds',
+	'Market hawkers'
+	];
+
 function generate() {
 	const environment = [
 		'Forest',
@@ -9,7 +17,8 @@ function generate() {
 	const sights = [
 		'Greenery',
 		'Festive colours',
-		'Drab buildings'
+		'Drab buildings',
+		'Gleaming buildings'
 	];
 
 	function selectOne(array) {
@@ -19,7 +28,8 @@ function generate() {
 
 	return {
 		environment: selectOne(environment),
-		sights: selectOne(sights)
+		sights: selectOne(sights),
+		sounds: selectOne(sounds)
 	}
 }
 

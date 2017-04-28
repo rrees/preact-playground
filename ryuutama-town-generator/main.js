@@ -37,7 +37,8 @@ class App extends Component {
 
 		this.townKeys = [
 			'environment',
-			'sights'
+			'sights',
+			'sounds'
 		];
 
 		this.state =town.generate();
