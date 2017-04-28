@@ -4,7 +4,15 @@ const { Component, h, render } = window.preact;
 function generateTown() {
 	const environment = [
 		'Forest',
+		'Valley',
+		'Coast',
 		'Hills'
+	];
+
+	sights = [
+		'Greenery',
+		'Festive colours',
+		'Drab buildings'
 	];
 
 	function selectOne(array) {
@@ -13,39 +21,50 @@ function generateTown() {
 	}
 
 	return {
-		environment: selectOne(environment)
+		environment: selectOne(environment),
+		sights: selectOne(sights)
 	}
 }
 
 class App extends Component {
 
 	renderDetails(state) {
-		if(!state) {
-			return null;
+		console.log(state);
+
+		const townDetails = this.townKeys.map((key) => { return [key, state[key]]});
+
+		function renderEntry(entry) {
+			const [key, value] = entry;
+			const name = key.charAt(0).toUpperCase() + key.slice(1);
+			return [h('dt', null, name), h('dd', null, value)];
 		}
-		const townDetails = ['environment'].map((key) => {[key, state[key]]});
-		console.log(townDetails);
+
 		return (
-			h('dl', null,
-				null)
+			h('dl', null, townDetails.map(renderEntry))
 		);
 	}
 
 	render(props, state) {
 		const component = this;
-		console.log(state);
+		//console.log(state);
 
 		return (
 			h('div', {id: 'app'},
-				h('h2', null, 'Create your town'),
 				component.renderDetails(state),
-				h('button', { onClick: (e) => { component.setState(generateTown()) }}, 'Create'),
+				h('button', { onClick: (e) => { component.setState(generateTown()) }}, 'Generate'),
 			)
 		);
 	}
 
 	constructor(props) {
 		super(props);
+
+		this.townKeys = [
+			'environment',
+			'sights'
+		];
+
+		this.state = generateTown();
 	}
 }
 
