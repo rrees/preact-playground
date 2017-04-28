@@ -1,30 +1,6 @@
 
 const { Component, h, render } = window.preact;
-
-function generateTown() {
-	const environment = [
-		'Forest',
-		'Valley',
-		'Coast',
-		'Hills'
-	];
-
-	sights = [
-		'Greenery',
-		'Festive colours',
-		'Drab buildings'
-	];
-
-	function selectOne(array) {
-		const l = array.length;
-		return array[Math.floor(Math.random() * l)];
-	}
-
-	return {
-		environment: selectOne(environment),
-		sights: selectOne(sights)
-	}
-}
+import * as town from './town';
 
 class App extends Component {
 
@@ -51,7 +27,7 @@ class App extends Component {
 		return (
 			h('div', {id: 'app'},
 				component.renderDetails(state),
-				h('button', { onClick: (e) => { component.setState(generateTown()) }}, 'Generate'),
+				h('button', { onClick: (e) => { component.setState(town.generate()) }}, 'Generate'),
 			)
 		);
 	}
@@ -64,7 +40,7 @@ class App extends Component {
 			'sights'
 		];
 
-		this.state = generateTown();
+		this.state =town.generate();
 	}
 }
 
