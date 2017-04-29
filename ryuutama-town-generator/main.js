@@ -5,14 +5,13 @@ import * as town from './town';
 class App extends Component {
 
 	renderDetails(state) {
-		console.log(state);
+		//console.log(state);
 
-		const townDetails = this.townKeys.map((key) => { return [key, state[key]]});
+		const townDetails = this.displayOrder.map((key) => { return [key, state[key]]});
 
 		function renderEntry(entry) {
 			const [key, value] = entry;
-			const name = key.charAt(0).toUpperCase() + key.slice(1);
-			return [h('dt', null, name), h('dd', null, value)];
+			return [h('dt', null, key), h('dd', null, value)];
 		}
 
 		return (
@@ -35,13 +34,13 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 
-		this.townKeys = [
-			'environment',
-			'sights',
-			'sounds'
+		this.displayOrder = [
+			'Environment',
+			'Sights',
+			'Sounds'
 		];
 
-		this.state =town.generate();
+		this.state=town.generate();
 	}
 }
 

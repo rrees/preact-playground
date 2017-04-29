@@ -1,36 +1,49 @@
 
+const environment = [
+	'Forest',
+	'Valley',
+	'Coast',
+	'Cliff',
+	'Wasteland',
+	'Plains',
+	'Trees',	
+	'Hills'
+];
+
+const sights = [
+	'Greenery',
+	'Festive colours',
+	'Drab buildings',
+	'Gleaming buildings'
+];
+
 
 const sounds = [
 	'Running water',
 	'Birds',
-	'Market hawkers'
+	'Market hawkers',
+	'Clanging metal',
+	'Children',
+	'Livestock'
 	];
+
+function selectOne(key, array, state) {
+	console.log(state);
+	const l = array.length;
+	const value = array[Math.floor(Math.random() * l)];
+	state[key] = value;
+	return state
+}
 
 function generate() {
-	const environment = [
-		'Forest',
-		'Valley',
-		'Coast',
-		'Hills'
+
+	const generators = [
+		(state) => selectOne('Environment', environment, state),
+		(state) => selectOne('Sights', sights, state),
+		(state) => selectOne('Sounds', sounds, state)
 	];
 
-	const sights = [
-		'Greenery',
-		'Festive colours',
-		'Drab buildings',
-		'Gleaming buildings'
-	];
-
-	function selectOne(array) {
-		const l = array.length;
-		return array[Math.floor(Math.random() * l)];
-	}
-
-	return {
-		environment: selectOne(environment),
-		sights: selectOne(sights),
-		sounds: selectOne(sounds)
-	}
+	return Array.reduce(generators,(acc, f) => f(acc), {})
 }
 
 export {
