@@ -1,4 +1,14 @@
 
+const populationTable = {
+	choices: [
+		[1, 3, 'Village'],
+		[4, 7, 'Town'],
+		[8, 9, 'City'],
+		[10, 10, 'Large city']
+	],
+	maxChoice: 10
+};
+
 const environment = [
 	'Forest',
 	'Valley',
@@ -35,9 +45,23 @@ function selectOne(key, array, state) {
 	return state
 }
 
+function selectFromTable(key, choicesTable, state) {
+	const choice = 1 + Math.floor(Math.random() * choicesTable.maxChoice);
+	//console.log(choice);
+
+	const entry = choicesTable.choices.find((entry) => entry[0] <= choice && choice <= entry[1]);
+
+	if(entry) {
+		state[key] = entry[2];
+	}
+
+	return state;
+}
+
 function generate() {
 
 	const generators = [
+		(state) => selectFromTable('Population', populationTable, state),
 		(state) => selectOne('Environment', environment, state),
 		(state) => selectOne('Sights', sights, state),
 		(state) => selectOne('Sounds', sounds, state)
