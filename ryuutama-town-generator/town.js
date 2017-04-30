@@ -36,6 +36,7 @@ function generate() {
 		(state) => selectFromTable('Building', data.buildingTable, state),
 		(state) => selectOne('Sights', data.sights, state),
 		(state) => selectOne('Sounds', data.sounds, state),
+		(state) => selectOne('Smells', data.smells, state),
 		(state) => selectOne('Threat', data.threats, state)
 	];
 

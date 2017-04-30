@@ -75,6 +75,15 @@ const sounds = [
 	'Livestock'
 	];
 
+const smells = [
+	"Animals",
+	"Cookfires",
+	"Forest",
+	"Water",
+	"Speciality goods",
+	"Waste"
+];
+
 const threats = [
 	'Famine',
 	'Drought',
@@ -117,5 +126,6 @@ export default {
 	sounds,
 	rulingAttitude,
 	buildingTable,
-	threats
+	threats,
+	smells
 }

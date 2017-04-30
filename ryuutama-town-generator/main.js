@@ -42,6 +42,7 @@ class App extends Component {
 			"Building",
 			'Sights',
 			'Sounds',
+			"Smells",
 			"Threat"
 		];
 
