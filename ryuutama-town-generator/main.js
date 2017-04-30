@@ -36,6 +36,8 @@ class App extends Component {
 
 		this.displayOrder = [
 			'Population',
+			"Government",
+			"Authority attitude",
 			'Environment',
 			'Sights',
 			'Sounds'

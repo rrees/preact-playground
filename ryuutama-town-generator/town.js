@@ -1,41 +1,4 @@
-
-const populationTable = {
-	choices: [
-		[1, 3, 'Village'],
-		[4, 7, 'Town'],
-		[8, 9, 'City'],
-		[10, 10, 'Large city']
-	],
-	maxChoice: 10
-};
-
-const environment = [
-	'Forest',
-	'Valley',
-	'Coast',
-	'Cliff',
-	'Wasteland',
-	'Plains',
-	'Trees',	
-	'Hills'
-];
-
-const sights = [
-	'Greenery',
-	'Festive colours',
-	'Drab buildings',
-	'Gleaming buildings'
-];
-
-
-const sounds = [
-	'Running water',
-	'Birds',
-	'Market hawkers',
-	'Clanging metal',
-	'Children',
-	'Livestock'
-	];
+import data from './data';
 
 function selectOne(key, array, state) {
 	console.log(state);
@@ -46,10 +9,15 @@ function selectOne(key, array, state) {
 }
 
 function selectFromTable(key, choicesTable, state) {
-	const choice = 1 + Math.floor(Math.random() * choicesTable.maxChoice);
+	let choice = 1 + Math.floor(Math.random() * choicesTable.maxChoice);
+
+	//console.log(choice);
+	if(choicesTable.modifier) {
+		choice = choice + choicesTable.modifier(state);
+	}
 	//console.log(choice);
 
-	const entry = choicesTable.choices.find((entry) => entry[0] <= choice && choice <= entry[1]);
+	const entry = choicesTable.choices.find((row) => row[0] <= choice && choice <= row[1]);
 
 	if(entry) {
 		state[key] = entry[2];
@@ -61,10 +29,12 @@ function selectFromTable(key, choicesTable, state) {
 function generate() {
 
 	const generators = [
-		(state) => selectFromTable('Population', populationTable, state),
-		(state) => selectOne('Environment', environment, state),
-		(state) => selectOne('Sights', sights, state),
-		(state) => selectOne('Sounds', sounds, state)
+		(state) => selectFromTable('Population', data.populationTable, state),
+		(state) => selectFromTable('Government', data.governmentTable, state),
+		(state) => selectOne('Authority attitude', data.rulingAttitude, state),
+		(state) => selectOne('Environment', data.environment, state),
+		(state) => selectOne('Sights', data.sights, state),
+		(state) => selectOne('Sounds', data.sounds, state)
 	];
 
 	return Array.reduce(generators,(acc, f) => f(acc), {})
