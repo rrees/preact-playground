@@ -33,6 +33,7 @@ function generate() {
 		(state) => selectFromTable('Government', data.governmentTable, state),
 		(state) => selectOne('Authority attitude', data.rulingAttitude, state),
 		(state) => selectOne('Environment', data.environment, state),
+		(state) => selectFromTable('Building', data.buildingTable, state),
 		(state) => selectOne('Sights', data.sights, state),
 		(state) => selectOne('Sounds', data.sounds, state)
 	];

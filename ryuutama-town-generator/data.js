@@ -75,11 +75,33 @@ const sounds = [
 	'Livestock'
 	];
 
+const buildingTable = {
+	maxChoice: 6,
+	choices: [
+		[1, 1, "Bridge"],
+		[2, 2, "Market"],
+		[3, 3, "Shrine"],
+		[4, 4, "Speciality production"],
+		[5, 5, "Civic center"],
+		[6, 6, "Monument"],
+		[7, 7, "Castle"]
+	],
+	modifier: function(state) {
+		if(state.Population === "City"
+			|| state.Population === "Large city") {
+			return 1;
+		}
+
+		return 0;
+	}
+}
+
 export default {
 	populationTable,
 	governmentTable,
 	environment,
 	sights,
 	sounds,
-	rulingAttitude
+	rulingAttitude,
+	buildingTable
 }

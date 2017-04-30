@@ -39,6 +39,7 @@ class App extends Component {
 			"Government",
 			"Authority attitude",
 			'Environment',
+			"Building",
 			'Sights',
 			'Sounds'
 		];
