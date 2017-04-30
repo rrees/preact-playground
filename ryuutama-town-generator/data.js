@@ -75,6 +75,19 @@ const sounds = [
 	'Livestock'
 	];
 
+const threats = [
+	'Famine',
+	'Drought',
+	'Monsters',
+	"Natural disaster",
+	"Bandits",
+	"Plague",
+	"Unfair treatment",
+	"Missing people",
+	"Vermin",
+	"Isolated"
+];
+
 const buildingTable = {
 	maxChoice: 6,
 	choices: [
@@ -103,5 +116,6 @@ export default {
 	sights,
 	sounds,
 	rulingAttitude,
-	buildingTable
+	buildingTable,
+	threats
 }

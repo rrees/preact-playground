@@ -35,7 +35,8 @@ function generate() {
 		(state) => selectOne('Environment', data.environment, state),
 		(state) => selectFromTable('Building', data.buildingTable, state),
 		(state) => selectOne('Sights', data.sights, state),
-		(state) => selectOne('Sounds', data.sounds, state)
+		(state) => selectOne('Sounds', data.sounds, state),
+		(state) => selectOne('Threat', data.threats, state)
 	];
 
 	return Array.reduce(generators,(acc, f) => f(acc), {})
