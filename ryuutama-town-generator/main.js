@@ -40,6 +40,7 @@ class App extends Component {
 			"Authority attitude",
 			'Environment',
 			"Building",
+			"Speciality goods",
 			'Sights',
 			'Sounds'
 		];

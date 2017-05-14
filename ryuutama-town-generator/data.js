@@ -96,6 +96,48 @@ const buildingTable = {
 	}
 }
 
+
+const specialityGoods = {
+	choices: [
+		"Cotton, wool and flax",
+		"Grain, vegetables and staples",
+		"Raw metal",
+		"Lumber",
+		"Wine, ale and spirits",
+		"Furs, hides, cloth",
+		"Livestock and pets",
+		"Leather goods",
+		"Wooden goods",
+		"Housewares",
+		"Herbs, salt, spices and sugar",
+		"Clothing, armour and weapons",
+		"Exotic fruits",
+		"Painting and sculpture",
+		"Jewelery",
+		"Perfumes and potions",
+		"Scrolls and books",
+		"Magical items",
+	],
+	defaultUpperLimit: 10,
+	modifier: function(state) {
+		const modifiers = [
+			["Town", 2],
+			["City", 5],
+			["Large city", 8]
+		];
+
+		function reducer(currentModifer, [size, modifier]) {
+			if(state['Population'] === size) {
+				return modifier;
+			}
+			
+			return currentModifer;
+		}
+
+		return modifiers.reduce(reducer, 0);
+	}	
+}
+
 export default {
 	populationTable,
 	governmentTable,
@@ -103,5 +145,6 @@ export default {
 	sights,
 	sounds,
 	rulingAttitude,
-	buildingTable
+	buildingTable,
+	specialityGoods,
 }

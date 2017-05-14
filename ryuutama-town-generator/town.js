@@ -1,5 +1,9 @@
 import data from './data';
 
+function pickBetween(lower, upper) {
+	return lower + Math.floor(Math.random() * upper);
+}
+
 function selectOne(key, array, state) {
 	console.log(state);
 	const l = array.length;
@@ -26,6 +30,16 @@ function selectFromTable(key, choicesTable, state) {
 	return state;
 }
 
+function selectOneWithModifier(key, table, state) {
+	const modifier = table.modifier ? table.modifier(state) : 0;
+
+	const goods = table.choices[pickBetween(0, table.defaultUpperLimit) + modifier];
+
+	state[key] = goods;
+
+	return state;
+}
+
 function generate() {
 
 	const generators = [
@@ -35,7 +49,8 @@ function generate() {
 		(state) => selectOne('Environment', data.environment, state),
 		(state) => selectFromTable('Building', data.buildingTable, state),
 		(state) => selectOne('Sights', data.sights, state),
-		(state) => selectOne('Sounds', data.sounds, state)
+		(state) => selectOne('Sounds', data.sounds, state),
+		(state) => selectOneWithModifier('Speciality goods', data.specialityGoods, state),
 	];
 
 	return Array.reduce(generators,(acc, f) => f(acc), {})
