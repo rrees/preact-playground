@@ -51,6 +51,8 @@ function generate() {
 		(state) => selectOne('Sights', data.sights, state),
 		(state) => selectOne('Sounds', data.sounds, state),
 		(state) => selectOneWithModifier('Speciality goods', data.specialityGoods, state),
+		(state) => selectOne('Smells', data.smells, state),
+		(state) => selectOne('Threat', data.threats, state),
 	];
 
 	return Array.reduce(generators,(acc, f) => f(acc), {})

@@ -75,6 +75,28 @@ const sounds = [
 	'Livestock'
 	];
 
+const smells = [
+	"Animals",
+	"Cookfires",
+	"Forest",
+	"Water",
+	"Speciality goods",
+	"Waste"
+];
+
+const threats = [
+	'Famine',
+	'Drought',
+	'Monsters',
+	"Natural disaster",
+	"Bandits",
+	"Plague",
+	"Unfair treatment",
+	"Missing people",
+	"Vermin",
+	"Isolated"
+];
+
 const buildingTable = {
 	maxChoice: 6,
 	choices: [
@@ -95,7 +117,6 @@ const buildingTable = {
 		return 0;
 	}
 }
-
 
 const specialityGoods = {
 	choices: [
@@ -147,4 +168,6 @@ export default {
 	rulingAttitude,
 	buildingTable,
 	specialityGoods,
+	threats,
+	smells
 }

@@ -42,7 +42,9 @@ class App extends Component {
 			"Building",
 			"Speciality goods",
 			'Sights',
-			'Sounds'
+			'Sounds',
+			"Smells",
+			"Threat"
 		];
 
 		this.state=town.generate();
